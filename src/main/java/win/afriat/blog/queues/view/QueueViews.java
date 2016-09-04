@@ -8,7 +8,6 @@ import win.afriat.blog.queues.SpecialLinkedListSupplier;
 import win.afriat.blog.queues.SpecialLinkedListSupplierSynchronized;
 import win.afriat.blog.queues.SpecialLinkedListSupplierSynchronizedBasic;
 import win.afriat.blog.queues.nodes.LinkedNode;
-import win.afriat.blog.queues.nodes.SimpleLinkedListSupplierSynchronized;
 import win.afriat.blog.queues.nodes.SingleLinkedNode;
 import win.afriat.blog.queues.nodes.SingleLinkedNodeAtomic;
 import win.afriat.blog.queues.nodes.SingleLinkedNodeAtomicLazy;
@@ -76,21 +75,7 @@ public class QueueViews {
     	queueView.queueClass = queue.getClass();
     	queueView.queueName = "SpecialLinkedListSupplier:SingleLinkedNodeSynchronized";
     	return queueView;
-	}
-	//SimpleLinkedListSupplierSynchronized
-	
-	public static SPSCQueueView<Integer> createQueueViewSimpleLinkedListSupplierSynchronized(int capacity) {
-    	Supplier supplier = SingleLinkedNode<Integer>::new;
-    	Supplier<LinkedNode<Integer>> nodeSupplier = supplier;
-    	SimpleLinkedListSupplierSynchronized<Integer> queue = new SimpleLinkedListSupplierSynchronized<Integer>(nodeSupplier);
-    	SPSCQueueView<Integer> queueView = new SPSCQueueView<>();
-    	queueView.producerView = queue::addToTail;
-    	queueView.consumerView = queue::removeFromHead;
-    	queueView.queueClass = queue.getClass();
-    	queueView.queueName = "SimpleLinkedListSupplierSynchronized:SingleLinkedNode";
-    	return queueView;
-	}
-	
+	}	
 	
 	public static SPSCQueueView<Integer> createQueueViewSpecialLinkedListSupplierNodeSynchronizedWrite(int capacity) {
     	Supplier supplier = SingleLinkedNodeSynchronizedWrite<Integer>::new;
